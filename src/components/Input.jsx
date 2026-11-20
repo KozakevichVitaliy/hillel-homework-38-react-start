@@ -1,5 +1,5 @@
-export const Input = ({ text, placeholder, onChange }) => {
+export const Input = ({ type, placeholder, onChange }) => {
   return (
-    <input type={text} placeholder={placeholder} onChange={onChange} />
+    <input type={type} placeholder={placeholder} onChange={onChange} />
   )
 }

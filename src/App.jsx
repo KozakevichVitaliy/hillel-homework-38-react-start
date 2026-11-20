@@ -7,7 +7,7 @@ import { onInputChange } from './listeners/inputListener'
 function App() {
   return (
     <>
-      <Input text="text" placeholder="Enter text" onChange={onInputChange} />
+      <Input type="text" placeholder="Enter text" onChange={onInputChange} />
       <Button text="Click me" type="button" onClick={onButtonClick}/>
     </>
   )
