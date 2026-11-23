@@ -20,14 +20,13 @@ function App() {
 
   const showUserDetails = (event) => {
     const userId = event.target.dataset["userId"];
-    console.log(userId)
     const user = users.find((user) => user.id === parseInt(userId));
     setUser(user);
   }
 
   return (
     <div className="users-container">
-      <Button text="Fetch Users" onClick={fetchUsers} type="button" />
+      <Button text="Fetch Users" onClick={async () => await fetchUsers()} type="button" />
       <UsersList users={users} showUserDetails={showUserDetails} />
         {user && <UserDetails user={user} />}
     </div>
