@@ -1,15 +1,36 @@
-
-import { Button } from './components/Button'
-import { Input } from './components/Input'
-import { onButtonClick } from './listeners/buttonListener'
-import { onInputChange } from './listeners/inputListener'
+import { useState } from 'react'
+import { Button } from './components/Button';
+import { UsersList } from './components/UsersList';
+import { UserDetails } from './components/UserDetails';
+import './css/App.css';
 
 function App() {
+  const [user, setUser] = useState(null);
+  const [users, setUsers] = useState([]);
+
+  const fetchUsers = async () => {
+    try {
+      const response = await fetch('https://jsonplaceholder.typicode.com/users');
+      const data = await response.json();
+      setUsers(data);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+    }
+  }
+
+  const showUserDetails = (event) => {
+    const userId = event.target.dataset["userId"];
+    console.log(userId)
+    const user = users.find((user) => user.id === parseInt(userId));
+    setUser(user);
+  }
+
   return (
-    <>
-      <Input type="text" placeholder="Enter text" onChange={onInputChange} />
-      <Button text="Click me" type="button" onClick={onButtonClick}/>
-    </>
+    <div className="users-container">
+      <Button text="Fetch Users" onClick={fetchUsers} type="button" />
+      <UsersList users={users} showUserDetails={showUserDetails} />
+        {user && <UserDetails user={user} />}
+    </div>
   )
 }
 
