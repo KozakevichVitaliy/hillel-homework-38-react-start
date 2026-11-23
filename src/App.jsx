@@ -18,8 +18,7 @@ function App() {
     }
   }
 
-  const showUserDetails = (event) => {
-    const userId = event.target.dataset["userId"];
+  const showUserDetails = (userId) => {
     const user = users.find((user) => user.id === parseInt(userId));
     setUser(user);
   }
