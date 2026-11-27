@@ -27,9 +27,11 @@ function App() {
 
   /* Show user details when a user is selected or when the users list visibility changes */
   useEffect(() => {
+    console.log(user)
     const showUserDetails = () => {
       if (!isUsersVisible) {
         setUser(null);
+        setUserId(null);
         return;
       }
       if (userId) {
