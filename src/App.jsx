@@ -27,19 +27,16 @@ function App() {
 
   /* Show user details when a user is selected or when the users list visibility changes */
   useEffect(() => {
-    console.log(user)
     const showUserDetails = () => {
+      const user = users.find((user) => user.id === parseInt(userId));
+      setUser(user ?? null);
+
       if (!isUsersVisible) {
         setUser(null);
         setUserId(null);
-        return;
-      }
-      if (userId) {
-        const user = users.find((user) => user.id === parseInt(userId));
-        setUser(user);
-        return;
       }
     }
+    
     showUserDetails()
   }, [userId, isUsersVisible]);
 
